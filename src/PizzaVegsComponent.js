@@ -23,4 +23,5 @@ const PizzaVegsComponent = (props) => {
     </fieldset>
   );
 };
+
 export default PizzaVegsComponent;
