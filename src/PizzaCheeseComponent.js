@@ -1,14 +1,15 @@
 import React from "react";
+import * as pizzaData from "./pizzaData";
 
 const PizzaCheeseComponent = (props) => {
-  const checkboxes = props.pizzaCheeseTypes.map((item) => (
-    <label key={item.id} className="chooseSauce">
+  const checkboxes = pizzaData.CHEESE.map((item) => (
+    <label key={item.id} className="chooseCheese">
       {" "}
       <input
         id={item.id}
         type="checkbox"
         name="cheese"
-        checked={props.ingredients.includes(item.pizzaCheese)}
+        checked={props.cheese.includes(item.pizzaCheese)}
         onChange={props.onChange}
         value={item.pizzaCheese}
       />{" "}

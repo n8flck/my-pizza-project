@@ -3,7 +3,6 @@
 This is a first training project to get used to React basics. It will emulate real-life Pizza behavior. Will be further updated...
 
 # Stage 1
-
 Following changes have been added:
 
 - Crete new app with Create React App;
@@ -22,3 +21,11 @@ Following changes have been added:
 - Order confirmation popup on button click:
     - Displaying Pizza configuration details
     - Displaying Final price
+
+# Stage 2
+Tests were added:
+
+- useCollection
+- pizzaOrderConfirmationPopup
+- calculatePizzaPrice
+- pizzaOrderForm
