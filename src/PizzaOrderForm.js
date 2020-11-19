@@ -1,79 +1,32 @@
-import React from "react";
+import { useState, useEffect } from "react";
 import PizzaSizeComponent from "./PizzaSizeComponent";
 import PizzaDoughComponent from "./PizzaDoughComponent";
 import PizzaSauceComponent from "./PizzaSauceComponent";
 import PizzaCheeseComponent from "./PizzaCheeseComponent";
 import PizzaVegsComponent from "./PizzaVegsComponent";
-import PizzaHamComponent from "./PizzaHamComponent";
-import PizzaOrderConfirmationPopup from "./PizzaOrderConfirmationPopup";
+import PizzaMeatComponent from "./PizzaMeatComponent";
+import { useCollection } from "./useCollection";
+import { calculatePizzaPrice } from "./calculatePizzaPrice";
 
-const PizzaOrderForm = () => {
-  const [size, setSize] = React.useState("");
-  const [price, setPrice] = React.useState(0);
-  const [dough, setDough] = React.useState("");
-  const [sauce, setSauce] = React.useState("");
-  const [cheese, setCheese] = React.useState("");
-  const [vegetable, setVegetable] = React.useState("");
-  const [ham, setHam] = React.useState("");
-  const [ingredients, setIngredients] = React.useState([]);
-  const [isOpen, setIsOpen] = React.useState(false);
+export const PizzaOrderForm = (props) => {
+  const [size, setSize] = useState("");
+  const [dough, setDough] = useState("");
+  const [sauce, setSauce] = useState("");
+  const [cheese, addCheese, removeCheese] = useCollection();
+  const [vegetables, addVegetables, removeVegetables] = useCollection();
+  const [meat, addMeat, removeMeat] = useCollection();
 
-  const pizzaSizes = [
-    { id: 0, pizzaSize: "30" },
-    { id: 1, pizzaSize: "35" }
-  ];
+  const price = calculatePizzaPrice({ size, cheese, vegetables, meat });
 
-  const pizzaDoughs = [
-    { id: 0, pizzaDough: "Thick" },
-    { id: 1, pizzaDough: "Thin" }
-  ];
-
-  const pizzaSauces = [
-    { id: 0, pizzaSauce: "Tomato" },
-    { id: 1, pizzaSauce: "White" },
-    { id: 2, pizzaSauce: "Spicy" }
-  ];
-
-  const pizzaCheeseTypes = [
-    { id: 0, pizzaCheese: "Mozzarella" },
-    { id: 1, pizzaCheese: "Cheddar" },
-    { id: 2, pizzaCheese: "Dorblue" }
-  ];
-  const pizzaVegetablesTypes = [
-    { id: 0, pizzaVegetable: "Tomatoes" },
-    { id: 1, pizzaVegetable: "Mushrooms" },
-    { id: 2, pizzaVegetable: "Pepper" }
-  ];
-
-  const pizzaHamTypes = [
-    { id: 0, pizzaHam: "Bacon" },
-    { id: 1, pizzaHam: "Pepperoni" },
-    { id: 2, pizzaHam: "Ham" }
-  ];
-
-  const toggleIngredient = (ingredient) => {
-    ingredients.includes(ingredient)
-      ? setIngredients(ingredients.filter((i) => i !== ingredient))
-      : setIngredients([...ingredients, ingredient]);
-    return {
-      ingredients
-    };
-  };
+  useEffect(() => {
+    document.size = size;
+    document.dough = dough;
+    document.sauce = sauce;
+  });
 
   const sizeChangedEvent = (event) => {
     setSize(event.target.value);
   };
-
-  React.useEffect(() => {
-    document.size = size;
-    document.dough = dough;
-    document.sauce = sauce;
-    document.cheese = cheese;
-    document.vegetable = vegetable;
-    document.ham = ham;
-    document.ingredients = ingredients;
-    calculatePizzaPrice();
-  });
 
   const doughChangedEvent = (event) => {
     setDough(event.target.value);
@@ -84,36 +37,44 @@ const PizzaOrderForm = () => {
   };
 
   const cheeseChangedEvent = (event) => {
-    setCheese(event.target.value);
-    toggleIngredient(event.currentTarget.value);
+    const { value, checked } = event.target;
+    if (checked) {
+      addCheese(value);
+    } else {
+      removeCheese(value);
+    }
   };
 
   const vegsChangedEvent = (event) => {
-    setVegetable(event.target.value);
-    toggleIngredient(event.currentTarget.value);
+    const { value, checked } = event.target;
+    if (checked) {
+      addVegetables(value);
+    } else {
+      removeVegetables(value);
+    }
   };
 
-  const hamChangedEvent = (event) => {
-    setHam(event.target.value);
-    toggleIngredient(event.currentTarget.value);
-  };
-
-  const togglePopup = () => {
-    setIsOpen(!isOpen);
+  const meatChangedEvent = (event) => {
+    const { value, checked } = event.target;
+    if (checked) {
+      addMeat(value);
+    } else {
+      removeMeat(value);
+    }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-  };
-
-  const calculatePizzaPrice = () => {
-    let basePrice = 200;
-    if (Number(size) === 35) {
-      basePrice += 50;
-    }
-    const numberOfIngrediends = ingredients.length;
-    basePrice += numberOfIngrediends * 29;
-    setPrice(basePrice);
+    props.onPizzaOrderCreated({
+      size,
+      dough,
+      sauce,
+      meat,
+      cheese,
+      vegetables,
+      price,
+    });
+    props.setShowPopup(true);
   };
 
   return (
@@ -125,58 +86,19 @@ const PizzaOrderForm = () => {
         noValidate
         autoComplete="off"
       >
-        <PizzaSizeComponent
-          pizzaSizez={pizzaSizes}
-          size={size}
-          onChange={sizeChangedEvent}
-        />
-        <PizzaDoughComponent
-          pizzaDoughs={pizzaDoughs}
-          dough={dough}
-          onChange={doughChangedEvent}
-        />
-        <PizzaSauceComponent
-          pizzaSauces={pizzaSauces}
-          sauce={sauce}
-          onChange={sauceChangedEvent}
-        />
-        <PizzaCheeseComponent
-          pizzaCheeseTypes={pizzaCheeseTypes}
-          cheese={cheese}
-          ingredients={ingredients}
-          onChange={cheeseChangedEvent}
-        />
+        <PizzaSizeComponent size={size} onChange={sizeChangedEvent} />
+        <PizzaDoughComponent dough={dough} onChange={doughChangedEvent} />
+        <PizzaSauceComponent sauce={sauce} onChange={sauceChangedEvent} />
+        <PizzaCheeseComponent cheese={cheese} onChange={cheeseChangedEvent} />
         <PizzaVegsComponent
-          pizzaVegetablesTypes={pizzaVegetablesTypes}
-          vegetable={vegetable}
-          ingredients={ingredients}
+          vegetables={vegetables}
           onChange={vegsChangedEvent}
         />
-        <PizzaHamComponent
-          pizzaHamTypes={pizzaHamTypes}
-          ham={ham}
-          ingredients={ingredients}
-          onChange={hamChangedEvent}
-        />
+        <PizzaMeatComponent meat={meat} onChange={meatChangedEvent} />
         <p>
-          <button onClick={togglePopup} type="submit">
-            Final Price {price}
-          </button>
+          <button type="submit">Final Price {price}</button>
         </p>
-        {isOpen && (
-          <PizzaOrderConfirmationPopup
-            size={size}
-            dough={dough}
-            sauce={sauce}
-            cheese={cheese}
-            price={price}
-            ingredients={ingredients}
-            handleClose={togglePopup}
-          />
-        )}
       </form>
     </div>
   );
 };
-
-export default PizzaOrderForm;

@@ -1,17 +1,30 @@
 import React from "react";
-import PizzaOrderForm from "./PizzaOrderForm";
-
+import PizzaOrderConfirmationPopup from "./PizzaOrderConfirmationPopup";
+import { PizzaOrderForm } from "./PizzaOrderForm";
 
 function App() {
-  return (
-    <>
-      <div className="App">
-      </div>
-      <div className="pizzaOrderForm">
-        <PizzaOrderForm />
-      </div>
-    </>
-  );
+  const [pizzaOrder, setPizzaOrder] = React.useState();
+  const [showPopup, setShowPopup] = React.useState(false);
+
+  if (showPopup && pizzaOrder) {
+    return (
+      <>
+        <PizzaOrderConfirmationPopup
+          pizzaOrder={pizzaOrder}
+          setShowPopup={setShowPopup}
+        />
+      </>
+    );
+  } else {
+    return (
+      <>
+        <PizzaOrderForm
+          onPizzaOrderCreated={setPizzaOrder}
+          setShowPopup={setShowPopup}
+        />
+      </>
+    );
+  }
 }
 
 export default App;

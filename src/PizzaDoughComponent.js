@@ -1,7 +1,8 @@
 import React from "react";
+import * as pizzaData from "./pizzaData";
 
-const PizzaDoughComponent = props => {
-  const radioButtons = props.pizzaDoughs.map((item) => (
+const PizzaDoughComponent = (props) => {
+  const radioButtons = pizzaData.DOUGHS.map((item) => (
     <label key={item.id} className="chooseDough">
       {" "}
       <input
@@ -18,10 +19,8 @@ const PizzaDoughComponent = props => {
 
   return (
     <fieldset>
-      <legend>Which dough would you like?</legend>
-      <p>
-        {radioButtons}
-      </p>
+      <legend>Which Dough would you like?</legend>
+      <p>{radioButtons}</p>
     </fieldset>
   );
 };
