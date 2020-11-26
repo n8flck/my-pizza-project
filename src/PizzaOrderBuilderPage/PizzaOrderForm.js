@@ -1,12 +1,8 @@
 import { useState, useEffect } from "react";
-import PizzaSizeComponent from "./PizzaSizeComponent";
-import PizzaDoughComponent from "./PizzaDoughComponent";
-import PizzaSauceComponent from "./PizzaSauceComponent";
-import PizzaCheeseComponent from "./PizzaCheeseComponent";
-import PizzaVegsComponent from "./PizzaVegsComponent";
-import PizzaMeatComponent from "./PizzaMeatComponent";
-import { useCollection } from "./useCollection";
-import { calculatePizzaPrice } from "./calculatePizzaPrice";
+import { useCollection } from "../shared/useCollection";
+import { calculatePizzaPrice } from "../shared/calculatePizzaPrice";
+import RadioButton from "../RadioButton";
+import Checkbox from "../Checkbox";
 
 export const PizzaOrderForm = (props) => {
   const [size, setSize] = useState("");
@@ -77,6 +73,8 @@ export const PizzaOrderForm = (props) => {
     props.setShowPopup(true);
   };
 
+  console.log("SIZE" + size)
+
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
       <h3>Order Pizza Form</h3>
@@ -86,15 +84,17 @@ export const PizzaOrderForm = (props) => {
         noValidate
         autoComplete="off"
       >
-        <PizzaSizeComponent size={size} onChange={sizeChangedEvent} />
-        <PizzaDoughComponent dough={dough} onChange={doughChangedEvent} />
-        <PizzaSauceComponent sauce={sauce} onChange={sauceChangedEvent} />
-        <PizzaCheeseComponent cheese={cheese} onChange={cheeseChangedEvent} />
-        <PizzaVegsComponent
-          vegetables={vegetables}
+        <RadioButton name={size} type={"size"} onChange={sizeChangedEvent} text={"Choose size"} />
+        <RadioButton name={dough} type={"dough"} onChange={doughChangedEvent} text={"Which Dough would you like?"} />
+        <RadioButton name={sauce} type={"sauce"} onChange={sauceChangedEvent} text={"Would you like some Sauce?"} />
+        <Checkbox name={cheese} type={"cheese"} onChange={cheeseChangedEvent} text={"Any Cheese?"} />
+        <Checkbox
+          name={vegetables}
+          type={"vegetables"}
           onChange={vegsChangedEvent}
+          text={"How about some Vegetables?"}
         />
-        <PizzaMeatComponent meat={meat} onChange={meatChangedEvent} />
+        <Checkbox name={meat} type={"meat"} onChange={meatChangedEvent} text={"Have you tried our Meat?"} />
         <p>
           <button type="submit">Final Price {price}</button>
         </p>

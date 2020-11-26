@@ -25,4 +25,13 @@
     border: 1px solid #999;
     overflow: auto;
   }
+
+.login-form, .checkout-form, .registration-form {
+    display: flex;
+    justify-content: left;
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+
+  
   
