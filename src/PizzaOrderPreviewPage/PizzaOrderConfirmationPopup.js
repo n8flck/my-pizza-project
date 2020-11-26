@@ -1,5 +1,6 @@
 import React from "react";
-import "./styles.css";
+import { Link } from "react-router-dom";
+import "../styles.css";
 
 const PizzaOrderConfirmationPopup = (props) => {
   const cheese = props.pizzaOrder.cheese.map((item, index) => (
@@ -31,11 +32,11 @@ const PizzaOrderConfirmationPopup = (props) => {
         {props.pizzaOrder.size === "" ? (
           <p>Pizza Size: N/A</p>
         ) : (
-          <p>Pizza Size: {props.pizzaOrder.size}</p>
+          <p>Pizza Size: {props.pizzaOrder.size}{"cm"}</p>
         )}
         {props.pizzaOrder.dough === "" ? (
           <p>Pizza Dough: N/A</p>
-        ) : (
+        ) : ( 
           <p>Pizza Dough: {props.pizzaOrder.dough}</p>
         )}
         {props.pizzaOrder.sauce === "" ? (
@@ -70,6 +71,8 @@ const PizzaOrderConfirmationPopup = (props) => {
         <span>-------------------</span>
         <p>Final Price: {props.pizzaOrder.price}</p>
         <button onClick={handleClick}>Close</button>
+        <hr />
+        <Link to="/pizza-order-checkout">Checkout</Link>
       </div>
     </div>
   );
