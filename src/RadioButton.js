@@ -1,24 +1,12 @@
 import React from "react";
-import * as pizzaData from "./shared/pizzaData";
+import { pizzaDataFiller } from "./pizzaDataFiller";
 
 const RadioButton = (props) => {
-  let radioArray = [];
+  let radioArray = pizzaDataFiller(props);
+  const isSize = props.type === "size";
+  let radioButtons = "";
 
-  const isSize = (props.type === "size");
-  const isDough = (props.type === "dough");
-  const isSauce = (props.type === "sauce");
-
-  if (isSize) {
-    radioArray = pizzaData.SIZES;
-  }
-  if (isDough) {
-    radioArray = pizzaData.DOUGHS;
-  }
-  if (isSauce) {
-    radioArray = pizzaData.SAUCES;
-  }
-
-  const radioButtons = radioArray.map((item) => (
+  radioButtons = radioArray.map((item) => (
     <label key={item.id}>
       {" "}
       <input
@@ -29,11 +17,7 @@ const RadioButton = (props) => {
         onChange={props.onChange}
         value={item.name}
       />{" "}
-      {isSize ? (
-        item.name + "cm"
-      ) : (
-        item.name + " "
-      )}
+      {isSize ? item.name + "cm" : item.name + " "}
     </label>
   ));
 

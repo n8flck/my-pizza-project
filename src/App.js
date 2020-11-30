@@ -10,41 +10,37 @@ import { PizzaOrderInvoicePage } from "./PizzaOrderInvoicePage";
 import { PizzaOrdersDetailsPage } from "./PizzaOrdersDetailsPage";
 
 function App() {
-  // const [pizzaOrder, setPizzaOrder] = React.useState();
-  // const [showPopup, setShowPopup] = React.useState(false);
-  // const Login = () => <h1>Login</h1>;
-  // const Payment = () => <h1>Payment</h1>;
-  // const Invoice = () => <h1>Invoice</h1>;
-  // const OrderDetails = () => <h1>OrderDetails</h1>;
-
-  // if (showPopup && pizzaOrder) {
-  //   return (
-  //     <>
-  //       <PizzaOrderConfirmationPopup
-  //         pizzaOrder={pizzaOrder}
-  //         setShowPopup={setShowPopup}
-  //       />
-  //     </>
-  //   );
-  // } else {
-  //   return (
-  //     <>
-  //       <PizzaOrderForm
-  //         onPizzaOrderCreated={setPizzaOrder}
-  //         setShowPopup={setShowPopup}
-  //       />
-  //     </>
-  //   );
-  // }
-
   return (
     <>
-      {/* <nav>
-        <Link to="/login">Login</Link>
-        <Link to="/payment">Payment</Link>
-        <Link to="/invoice">Invoice</Link>
-        <Link to="/orderDetails">Order Details</Link>
-      </nav> */}
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Registration</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/pizza-order-builder">Pizza Order Form</Link>
+          </li>
+          <li>
+            <Link to="/pizza-order-preview">Pizza Order Preview</Link>
+          </li>
+          <li>
+            <Link to="/pizza-order-checkout">Order Checkout</Link>
+          </li>
+          <li>
+            <Link to="/pizza-order-invoice">Invoice</Link>
+          </li>
+          <li>
+            <Link to="/pizza-order-checkout">Order Checkout</Link>
+          </li>
+          <li>
+            <Link to="/pizza-orders-details">Order Details</Link>
+          </li>
+        </ul>
+      </nav>
+      ;
       <Switch>
         <Route exact path="/">
           <RegistrationPage />

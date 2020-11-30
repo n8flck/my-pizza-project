@@ -1,27 +1,37 @@
-import * as pizzaData from "./pizzaData";
+import { pizzaDataFiller } from "../pizzaDataFiller";
 
 export const calculatePizzaPrice = ({ size, cheese, vegetables, meat }) => {
   let basePrice = 200;
-  let sizePrice = 0;
-  if (size) {
-    sizePrice = pizzaData.SIZES.find((o) => o.name === size).price;
-  }
-  const cheesePrice = cheese.reduce(
-    (price, cheese) =>
-      price + pizzaData.CHEESE.find((o) => o.name === cheese).price,
-    0
-  );
-  const vegetablesPrice = vegetables.reduce(
-    (price, vegetable) =>
-      price +
-      pizzaData.VEGETABLES.find((o) => o.name === vegetable).price,
-    0
-  );
-  const meatPrice = meat.reduce(
-    (price, meat) =>
-      price + pizzaData.MEAT.find((o) => o.name === meat).price,
-    0
-  );
+  let ingredientPrice = 0;
 
-  return basePrice + sizePrice + cheesePrice + vegetablesPrice + meatPrice;
+  let calculateIngredients = new Map();
+
+  calculateIngredients.set("size", size);
+  calculateIngredients.set("cheese", cheese);
+  calculateIngredients.set("vegetables", vegetables);
+  calculateIngredients.set("meat", meat);
+
+  let pizzaIngredients = [];
+
+  for (let [key, value] of calculateIngredients) {
+    pizzaIngredients = pizzaDataFiller({
+      name: "",
+      type: key,
+      text: "",
+      onChange: null,
+    });
+    if (value.length > 0) {
+      if (key === "size") {
+        ingredientPrice += pizzaIngredients.find((o) => o.name === value).price;
+      } else {
+        ingredientPrice += value.reduce(
+          (price, val) =>
+            price + pizzaIngredients.find((o) => o.name === val).price,
+          0
+        );
+      }
+    }
+  }
+
+  return basePrice + ingredientPrice;
 };

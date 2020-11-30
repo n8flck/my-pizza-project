@@ -30,16 +30,30 @@ export const PizzaOrderCheckoutPage = () => {
         placeholder="September"
       />
 
-        <div>
-          <label for="expyear">Exp Year</label>
-          <input class="checkout-form" type="text" id="expyear" name="expyear" placeholder="2018" />
-        </div>
-        <div>
-          <label for="cvv">CVV</label>
-          <input class="checkout-form" type="text" id="cvv" name="cvv" placeholder="352" />
-        </div>
-        <button type="submit" class="btn">Pay</button>
-        <hr />
+      <div>
+        <label for="expyear">Exp Year</label>
+        <input
+          class="checkout-form"
+          type="text"
+          id="expyear"
+          name="expyear"
+          placeholder="2018"
+        />
+      </div>
+      <div>
+        <label for="cvv">CVV</label>
+        <input
+          class="checkout-form"
+          type="text"
+          id="cvv"
+          name="cvv"
+          placeholder="352"
+        />
+      </div>
+      <button type="submit" class="btn">
+        Pay
+      </button>
+      <hr />
       <Link to="/pizza-order-invoice">Invoice Page</Link>
     </>
   );
