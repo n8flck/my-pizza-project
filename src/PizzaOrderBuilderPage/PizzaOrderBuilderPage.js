@@ -1,27 +1,20 @@
 import { useHistory } from "react-router-dom";
 import { usePizza } from "../PizzaContext";
-import { PizzaOrderForm } from "./PizzaOrderForm"
+import { PizzaOrderForm } from "./PizzaOrderForm";
 
-export const PizzaOrderBuilderPage = () => {
-    const { setPizzaOrder } = usePizza();
-    const { setShowPopup } = usePizza();
-    const history = useHistory();
+export const PizzaOrderBuilderPage = ({ usePizzaHook = usePizza }) => {
+  const { setPizzaOrder } = usePizzaHook();
+  const history = useHistory();
 
-    const onPizzaOrderChange1 = (pizzaOrder) => {
-        setPizzaOrder(pizzaOrder);
-        history.push("/pizza-order-preview");
-    }
-
-    const onPizzaOrderChange2 = (showPopup) => {
-        setShowPopup(showPopup);
-    }
+  const onPizzaOrderChange = (pizzaOrder) => {
+    setPizzaOrder(pizzaOrder);
+    history.push("/pizza-order-preview");
+  };
 
   return (
     <>
-      <PizzaOrderForm
-        onPizzaOrderCreated={onPizzaOrderChange1}
-        setShowPopup={onPizzaOrderChange2}
-      />
+      <h3>Order Pizza Form</h3>
+      <PizzaOrderForm onPizzaOrderCreated={onPizzaOrderChange} />
     </>
   );
 };

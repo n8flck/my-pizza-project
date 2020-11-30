@@ -4,7 +4,7 @@ const { PizzaOrderForm } = require("./PizzaOrderForm");
 describe("PizzaOrderForm", () => {
   it("renders correctly", () => {
     const { getByText } = render(<PizzaOrderForm />);
-    expect(getByText("Order Pizza Form")).toBeInTheDocument();
+    expect(getByText("Choose size")).toBeInTheDocument();
   });
 
   describe("with all additions unchecked", () => {
@@ -34,12 +34,8 @@ describe("PizzaOrderForm", () => {
   describe("on pizzaOrder submit", () => {
     it("passes pizzaOrder confirmation popUp", () => {
       const onPizzaOrderSubmit = jest.fn();
-      const showPopUpOnSubmit = jest.fn();
       const { getByText } = render(
-        <PizzaOrderForm
-          onPizzaOrderCreated={onPizzaOrderSubmit}
-          setShowPopup={showPopUpOnSubmit}
-        />
+        <PizzaOrderForm onPizzaOrderCreated={onPizzaOrderSubmit} />
       );
       fireEvent.click(getByText("Dorblue"));
       fireEvent.click(getByText("Pepperoni"));

@@ -1,24 +1,11 @@
 import React from "react";
-import * as pizzaData from "./shared/pizzaData";
+import { pizzaDataFiller } from "./pizzaDataFiller";
 
 const Checkbox = (props) => {
-  let checkboxArray = [];
+  let checkboxArray = pizzaDataFiller(props);
+  let checkboxes = "";
 
-  const isCheese = props.type === "cheese";
-  const isVegs = props.type === "vegetables";
-  const isMeat = props.type === "meat";
-
-  if (isCheese) {
-    checkboxArray = pizzaData.CHEESE;
-  }
-  if (isVegs) {
-    checkboxArray = pizzaData.VEGETABLES;
-  }
-  if (isMeat) {
-    checkboxArray = pizzaData.MEAT;
-  }
-
-  const checkboxes = checkboxArray.map((item) => (
+  checkboxes = checkboxArray.map((item) => (
     <label key={item.id}>
       {" "}
       <input

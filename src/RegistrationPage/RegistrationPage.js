@@ -25,7 +25,7 @@ export const RegistrationPage = () => {
           <b>Password</b>
         </label>
         <input
-        class="registration-form"
+          class="registration-form"
           type="password"
           placeholder="Enter Password"
           name="psw"

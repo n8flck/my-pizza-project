@@ -1,27 +1,29 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import "../styles.css";
 
-const PizzaOrderConfirmationPopup = (props) => {
-  const cheese = props.pizzaOrder.cheese.map((item, index) => (
+const PizzaOrderConfirmationPopup = ({ pizzaOrder }) => {
+  const cheese = pizzaOrder.cheese.map((item, index) => (
     <li key={index} value={item}>
       {item}
     </li>
   ));
-  const meat = props.pizzaOrder.meat.map((item, index) => (
+  const meat = pizzaOrder.meat.map((item, index) => (
     <li key={index} value={item}>
       {item}
     </li>
   ));
-  const vegetables = props.pizzaOrder.vegetables.map((item, index) => (
+  const vegetables = pizzaOrder.vegetables.map((item, index) => (
     <li key={index} value={item}>
       {item}
     </li>
   ));
+
+  const history = useHistory();
 
   const handleClick = (event) => {
     event.preventDefault();
-    props.setShowPopup(false);
+    history.push("/pizza-order-builder");
   };
 
   return (
@@ -29,20 +31,23 @@ const PizzaOrderConfirmationPopup = (props) => {
       <div className="box">
         <h2>Your Pizza Order:</h2>
 
-        {props.pizzaOrder.size === "" ? (
+        {pizzaOrder.size === "" ? (
           <p>Pizza Size: N/A</p>
         ) : (
-          <p>Pizza Size: {props.pizzaOrder.size}{"cm"}</p>
+          <p>
+            Pizza Size: {pizzaOrder.size}
+            {"cm"}
+          </p>
         )}
-        {props.pizzaOrder.dough === "" ? (
+        {pizzaOrder.dough === "" ? (
           <p>Pizza Dough: N/A</p>
-        ) : ( 
-          <p>Pizza Dough: {props.pizzaOrder.dough}</p>
+        ) : (
+          <p>Pizza Dough: {pizzaOrder.dough}</p>
         )}
-        {props.pizzaOrder.sauce === "" ? (
+        {pizzaOrder.sauce === "" ? (
           <p>Pizza Sauce: N/A</p>
         ) : (
-          <p>Pizza Sauce: {props.pizzaOrder.sauce}</p>
+          <p>Pizza Sauce: {pizzaOrder.sauce}</p>
         )}
         {cheese.length === 0 ? (
           <p>Pizza Cheese: N/A</p>
@@ -69,7 +74,7 @@ const PizzaOrderConfirmationPopup = (props) => {
           </div>
         )}
         <span>-------------------</span>
-        <p>Final Price: {props.pizzaOrder.price}</p>
+        <p>Final Price: {pizzaOrder.price}</p>
         <button onClick={handleClick}>Close</button>
         <hr />
         <Link to="/pizza-order-checkout">Checkout</Link>

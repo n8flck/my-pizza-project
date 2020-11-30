@@ -4,7 +4,7 @@ import { calculatePizzaPrice } from "../shared/calculatePizzaPrice";
 import RadioButton from "../RadioButton";
 import Checkbox from "../Checkbox";
 
-export const PizzaOrderForm = (props) => {
+export const PizzaOrderForm = ({ onPizzaOrderCreated }) => {
   const [size, setSize] = useState("");
   const [dough, setDough] = useState("");
   const [sauce, setSauce] = useState("");
@@ -61,7 +61,7 @@ export const PizzaOrderForm = (props) => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.onPizzaOrderCreated({
+    onPizzaOrderCreated({
       size,
       dough,
       sauce,
@@ -70,31 +70,52 @@ export const PizzaOrderForm = (props) => {
       vegetables,
       price,
     });
-    props.setShowPopup(true);
   };
-
-  console.log("SIZE" + size)
 
   return (
     <div style={{ maxWidth: "600px", margin: "0 auto" }}>
-      <h3>Order Pizza Form</h3>
       <form
         onSubmit={handleSubmit}
         className="orderPizzaForm"
         noValidate
         autoComplete="off"
       >
-        <RadioButton name={size} type={"size"} onChange={sizeChangedEvent} text={"Choose size"} />
-        <RadioButton name={dough} type={"dough"} onChange={doughChangedEvent} text={"Which Dough would you like?"} />
-        <RadioButton name={sauce} type={"sauce"} onChange={sauceChangedEvent} text={"Would you like some Sauce?"} />
-        <Checkbox name={cheese} type={"cheese"} onChange={cheeseChangedEvent} text={"Any Cheese?"} />
+        <RadioButton
+          name={size}
+          type={"size"}
+          onChange={sizeChangedEvent}
+          text={"Choose size"}
+        />
+        <RadioButton
+          name={dough}
+          type={"dough"}
+          onChange={doughChangedEvent}
+          text={"Which Dough would you like?"}
+        />
+        <RadioButton
+          name={sauce}
+          type={"sauce"}
+          onChange={sauceChangedEvent}
+          text={"Would you like some Sauce?"}
+        />
+        <Checkbox
+          name={cheese}
+          type={"cheese"}
+          onChange={cheeseChangedEvent}
+          text={"Any Cheese?"}
+        />
         <Checkbox
           name={vegetables}
           type={"vegetables"}
           onChange={vegsChangedEvent}
           text={"How about some Vegetables?"}
         />
-        <Checkbox name={meat} type={"meat"} onChange={meatChangedEvent} text={"Have you tried our Meat?"} />
+        <Checkbox
+          name={meat}
+          type={"meat"}
+          onChange={meatChangedEvent}
+          text={"Have you tried our Meat?"}
+        />
         <p>
           <button type="submit">Final Price {price}</button>
         </p>

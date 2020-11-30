@@ -1,1 +1,1 @@
-export * from "./PizzaOrdersDetailsPage"
+export * from "./PizzaOrdersDetailsPage";
