@@ -8,7 +8,7 @@ export const PizzaOrderBuilderPage = ({ usePizzaHook = usePizza }) => {
 
   const onPizzaOrderChange = (pizzaOrder) => {
     setPizzaOrder(pizzaOrder);
-    history.push("/pizza-order-preview");
+    history.push("/order-preview");
   };
 
   return (

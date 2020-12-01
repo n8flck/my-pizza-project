@@ -82,7 +82,7 @@ describe("PizzaOrderConfirmationPopup", () => {
         </MemoryRouter>
       );
       fireEvent.click(getByText("Close"));
-      expect(mockHistoryPush).toHaveBeenCalledWith("/pizza-order-builder");
+      expect(mockHistoryPush).toHaveBeenCalledWith("/order-builder");
     });
   });
 });

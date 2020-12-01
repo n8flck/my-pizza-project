@@ -20,19 +20,19 @@ export const PizzaOrderForm = ({ onPizzaOrderCreated }) => {
     document.sauce = sauce;
   });
 
-  const sizeChangedEvent = (event) => {
+  const handleSizeChanged = (event) => {
     setSize(event.target.value);
   };
 
-  const doughChangedEvent = (event) => {
+  const handleDoughChanged = (event) => {
     setDough(event.target.value);
   };
 
-  const sauceChangedEvent = (event) => {
+  const handleSauceChanged = (event) => {
     setSauce(event.target.value);
   };
 
-  const cheeseChangedEvent = (event) => {
+  const handleCheeseChanged = (event) => {
     const { value, checked } = event.target;
     if (checked) {
       addCheese(value);
@@ -41,7 +41,7 @@ export const PizzaOrderForm = ({ onPizzaOrderCreated }) => {
     }
   };
 
-  const vegsChangedEvent = (event) => {
+  const handleVegsChanged = (event) => {
     const { value, checked } = event.target;
     if (checked) {
       addVegetables(value);
@@ -50,7 +50,7 @@ export const PizzaOrderForm = ({ onPizzaOrderCreated }) => {
     }
   };
 
-  const meatChangedEvent = (event) => {
+  const handleMeatChanged = (event) => {
     const { value, checked } = event.target;
     if (checked) {
       addMeat(value);
@@ -83,37 +83,37 @@ export const PizzaOrderForm = ({ onPizzaOrderCreated }) => {
         <RadioButton
           name={size}
           type={"size"}
-          onChange={sizeChangedEvent}
+          onChange={handleSizeChanged}
           text={"Choose size"}
         />
         <RadioButton
           name={dough}
           type={"dough"}
-          onChange={doughChangedEvent}
+          onChange={handleDoughChanged}
           text={"Which Dough would you like?"}
         />
         <RadioButton
           name={sauce}
           type={"sauce"}
-          onChange={sauceChangedEvent}
+          onChange={handleSauceChanged}
           text={"Would you like some Sauce?"}
         />
         <Checkbox
           name={cheese}
           type={"cheese"}
-          onChange={cheeseChangedEvent}
+          onChange={handleCheeseChanged}
           text={"Any Cheese?"}
         />
         <Checkbox
           name={vegetables}
           type={"vegetables"}
-          onChange={vegsChangedEvent}
+          onChange={handleVegsChanged}
           text={"How about some Vegetables?"}
         />
         <Checkbox
           name={meat}
           type={"meat"}
-          onChange={meatChangedEvent}
+          onChange={handleMeatChanged}
           text={"Have you tried our Meat?"}
         />
         <p>

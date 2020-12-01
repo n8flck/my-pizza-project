@@ -61,7 +61,7 @@ describe("PizzaOrderBuilderPage", () => {
         vegetables: [],
       });
     });
-    it("navigates to `/pizza-order-preview`", () => {
+    it("navigates to `/order-preview`", () => {
         const history = createMemoryHistory();
         const { getByText } = render(
             <Router history={history}>
@@ -73,7 +73,7 @@ describe("PizzaOrderBuilderPage", () => {
             </Router>
           );
           fireEvent.click(getByText("Save"));
-          expect(history.location.pathname).toEqual("/pizza-order-preview")
+          expect(history.location.pathname).toEqual("/order-preview")
     });
   });
 });

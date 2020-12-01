@@ -21,26 +21,23 @@ function App() {
             <Link to="/login">Login</Link>
           </li>
           <li>
-            <Link to="/pizza-order-builder">Pizza Order Form</Link>
+            <Link to="/order-builder">Pizza Order Form</Link>
           </li>
           <li>
-            <Link to="/pizza-order-preview">Pizza Order Preview</Link>
+            <Link to="/order-preview">Pizza Order Preview</Link>
           </li>
           <li>
-            <Link to="/pizza-order-checkout">Order Checkout</Link>
+            <Link to="/order-checkout">Order Checkout</Link>
           </li>
           <li>
-            <Link to="/pizza-order-invoice">Invoice</Link>
+            <Link to="/order-invoice">Invoice</Link>
           </li>
           <li>
-            <Link to="/pizza-order-checkout">Order Checkout</Link>
-          </li>
-          <li>
-            <Link to="/pizza-orders-details">Order Details</Link>
+            <Link to="/orders-details">Order Details</Link>
           </li>
         </ul>
       </nav>
-      ;
+
       <Switch>
         <Route exact path="/">
           <RegistrationPage />
@@ -48,19 +45,19 @@ function App() {
         <Route path="/login">
           <LoginPage />
         </Route>
-        <Route path="/pizza-order-builder">
+        <Route path="/order-builder">
           <PizzaOrderBuilderPage />
         </Route>
-        <Route path="/pizza-order-preview">
+        <Route path="/order-preview">
           <PizzaOrderPreviewPage />
         </Route>
-        <Route path="/pizza-order-checkout">
+        <Route path="/order-checkout">
           <PizzaOrderCheckoutPage />
         </Route>
-        <Route path="/pizza-order-invoice">
+        <Route path="/order-invoice">
           <PizzaOrderInvoicePage />
         </Route>
-        <Route path="/pizza-orders-details">
+        <Route path="/orders-details">
           <PizzaOrdersDetailsPage />
         </Route>
         <Route>
