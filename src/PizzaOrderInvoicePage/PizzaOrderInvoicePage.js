@@ -35,7 +35,7 @@ export const PizzaOrderInvoicePage = () => {
         </tr>
       </table>
       <hr />
-      <Link to="/pizza-orders-details">Orders Details Page</Link>
+      <Link to="/orders-details">Orders Details Page</Link>
     </>
   );
 };

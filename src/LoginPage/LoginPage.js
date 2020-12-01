@@ -33,7 +33,7 @@ export const LoginPage = () => {
 
         <button
           type="submit"
-          onClick={() => history.push("/pizza-order-builder")}
+          onClick={() => history.push("/order-builder")}
         >
           Login
         </button>

@@ -54,7 +54,7 @@ export const PizzaOrderCheckoutPage = () => {
         Pay
       </button>
       <hr />
-      <Link to="/pizza-order-invoice">Invoice Page</Link>
+      <Link to="/order-invoice">Invoice Page</Link>
     </>
   );
 };

@@ -12,5 +12,5 @@ export const PizzaOrderPreviewPage = () => {
       </>
     );
   }
-  return <Redirect to="/pizza-order-builder" />;
+  return <Redirect to="/order-builder" />;
 };
