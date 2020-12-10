@@ -1,0 +1,6 @@
+#upload-picture {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
