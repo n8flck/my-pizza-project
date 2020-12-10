@@ -40,7 +40,7 @@ Navigation and tests were added:
 
 # Stage 4
 
-New Admin app, Login, Registration, Checkout forms were added. Tests:
+Login, Registration, Checkout forms were added. Tests:
 
 - LoginPage.spec.js
 - PizzaOrderCheckoutPage.spec.js
