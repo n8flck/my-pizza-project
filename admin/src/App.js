@@ -1,33 +1,39 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import "./styles.css";
+import { Route, Link, Switch } from "react-router-dom";
+import { ToppingsPreviewPage } from "./ToppingsPreviewPage";
+import { CreateToppingsPage } from "./CreateToppingsPage";
+import { ToppingEditPage } from "./ToppingsPreviewPage/ToppingEditPage";
+import { NotFoundPage } from "./NotFoundPage";
 
 function App() {
-  const { register, handleSubmit } = useForm();
-
-  const onSubmit = async (data) => {
-    console.log(data);
-    const formData = new FormData();
-    formData.append("picture", data.picture[0]);
-
-    const res = await fetch("http://localhost:3000/picture", {
-      method: "POST",
-      body: formData,
-    }).then((res) => res.json());
-    alert(JSON.stringify(res));
-  };
-
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label htmlFor="upload-picture">
-          <p>Browse...</p>
-        </label>
-        <input id="upload-picture" ref={register} type="file" name="picture" />
-        <button>Submit</button>
-      </div>
-    </form>
-  );
-}
+    <>
+      <nav>
+        <ul>
+          <li>
+            <Link to="/">Create Toppings</Link>
+          </li>
+          <li>
+            <Link to="/toppings-preview">Toppings Details</Link>
+          </li>
+        </ul>
+      </nav>
 
+      <Switch>
+        <Route exact path="/">
+          <CreateToppingsPage />
+        </Route>
+        <Route path="/toppings-preview">
+          <ToppingsPreviewPage />
+        </Route>
+        <Route path="/topping-edit">
+          <ToppingEditPage />
+        </Route>
+        <Route>
+          <NotFoundPage />
+        </Route>
+      </Switch>
+    </>
+  );
+};
 export default App;

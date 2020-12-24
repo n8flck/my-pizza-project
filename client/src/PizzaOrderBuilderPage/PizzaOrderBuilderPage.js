@@ -8,13 +8,12 @@ export const PizzaOrderBuilderPage = ({ usePizzaHook = usePizza }) => {
 
   const onPizzaOrderChange = (pizzaOrder) => {
     setPizzaOrder(pizzaOrder);
-    // <PizzaOrderConfirmationPopup pizzaOrder={pizzaOrder} />
     history.push("/order-preview");
   };
 
   return (
     <>
-      <h3>Order Pizza Form</h3>
+      <h2>Order Pizza Form</h2>
       <PizzaOrderForm onPizzaOrderCreated={onPizzaOrderChange} />
     </>
   );

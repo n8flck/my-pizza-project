@@ -45,3 +45,8 @@ Login, Registration, Checkout forms were added. Tests:
 - LoginPage.spec.js
 - PizzaOrderCheckoutPage.spec.js
 - RegistrationPage.spec.js
+
+# Stage 5
+
+Communication with server has been added. Order is sent to server now.
+Orders received from server are displayed on PizzaOrdersDetailsPage.

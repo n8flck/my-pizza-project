@@ -4,6 +4,7 @@ export const PizzaOrderInvoicePage = () => {
   return (
     <>
       <table>
+        <tbody>
         <tr className="paymet-method">
           <td>Payment Method:</td>
 
@@ -33,6 +34,7 @@ export const PizzaOrderInvoicePage = () => {
 
           <td>$385.00</td>
         </tr>
+        </tbody>
       </table>
       <hr />
       <Link to="/orders-details">Orders Details Page</Link>
