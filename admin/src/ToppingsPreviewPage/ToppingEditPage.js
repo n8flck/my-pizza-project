@@ -23,7 +23,7 @@ export const ToppingEditPage = () => {
       }
     };
     loadToppingData();
-  }, [location]);
+  }, [location.state.detail]);
 
   if (error) {
     return <>ERROR: {error.message}</>;
