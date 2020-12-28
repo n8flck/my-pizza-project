@@ -1,5 +1,9 @@
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
+import { usePizza } from "../PizzaContext";
+import { useHistory } from "react-router-dom";
+import { createNewOrder } from "../shared/api";
+import React, { useState } from "react";
 
 const normalizeCardNumber = (value) => {
   return (
@@ -27,12 +31,23 @@ const detectCardType = (number) => {
   }
 };
 
-export const PizzaOrderCheckoutPage = ({ registerSubmit }) => {
-  const { register, handleSubmit } = useForm();
 
-  const onSubmit = (data) => {
-    registerSubmit(data);
-  };
+export const PizzaOrderCheckoutPage = ({ usePizzaHook = usePizza }) => {
+  const { register, handleSubmit } = useForm();
+  const [cardType, setCardType] = useState();
+  const history = useHistory();
+  const { pizzaOrder } = usePizzaHook();
+
+  const onSubmit = handleSubmit(async (data) => {
+    const formData = new FormData();
+    formData.append("ingredients", Object.values(pizzaOrder));
+    formData.append("address", data.address);
+    formData.append("name", data.cardholder);
+    formData.append("card_number", data.cardnumber);
+
+    const result = await createNewOrder(formData);
+    history.push("/order-invoice");
+  });
 
   return (
     <>
@@ -47,7 +62,7 @@ export const PizzaOrderCheckoutPage = ({ registerSubmit }) => {
             type="text"
             name="cardholder"
             placeholder="John More Doe"
-            ref={register}
+            ref={register({ required: true })}
           />
         </div>
         <div>
@@ -62,10 +77,10 @@ export const PizzaOrderCheckoutPage = ({ registerSubmit }) => {
             placeholder="0000 0000 0000 0000"
             onChange={(event) => {
               const { value } = event.target;
+              setCardType(event.target.value);
               event.target.value = normalizeCardNumber(value);
-              // setValue("cardtype", detectCardType(event.target.value));
             }}
-            ref={register}
+            ref={register({ required: true })}
           />
         </div>
         <div>
@@ -76,7 +91,7 @@ export const PizzaOrderCheckoutPage = ({ registerSubmit }) => {
             type="text"
             name="expmonth"
             placeholder="September"
-            ref={register}
+            ref={register({ required: true })}
           />
         </div>
         <div>
@@ -87,7 +102,7 @@ export const PizzaOrderCheckoutPage = ({ registerSubmit }) => {
             type="text"
             name="expyear"
             placeholder="2018"
-            ref={register}
+            ref={register({ required: true })}
           />
         </div>
         <div>
@@ -103,7 +118,18 @@ export const PizzaOrderCheckoutPage = ({ registerSubmit }) => {
               const { value } = event.target;
               event.target.value = normalizeCVV(value);
             }}
-            ref={register}
+            ref={register({ required: true })}
+          />
+        </div>
+        <div>
+          <label htmlFor="address">Address</label>
+          <input
+            id="address"
+            className="checkout-form"
+            type="text"
+            name="address"
+            placeholder="Your Billing Address"
+            ref={register({ required: true })}
           />
         </div>
         <button type="submit" className="btn">

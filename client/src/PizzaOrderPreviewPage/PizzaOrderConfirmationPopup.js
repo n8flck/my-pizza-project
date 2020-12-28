@@ -21,9 +21,14 @@ const PizzaOrderConfirmationPopup = ({ pizzaOrder }) => {
 
   const history = useHistory();
 
-  const handleClick = (event) => {
+  const handleClickClose = (event) => {
     event.preventDefault();
     history.push("/order-builder");
+  };
+
+  const handleSubmitCheckout = (event) => {
+    event.preventDefault();
+      history.push("/order-checkout");
   };
 
   return (
@@ -75,7 +80,8 @@ const PizzaOrderConfirmationPopup = ({ pizzaOrder }) => {
         )}
         <span>-------------------</span>
         <p>Final Price: {pizzaOrder.price}</p>
-        <button onClick={handleClick}>Close</button>
+        <button onClick={handleClickClose}>Close</button>
+        <button onClick={handleSubmitCheckout}>Checkout</button>
         <hr />
         <Link to="/order-checkout">Checkout</Link>
       </div>

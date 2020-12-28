@@ -34,13 +34,24 @@
 #ccnum,
 #expmonth,
 #expyear,
-#cvv {
+#cvv,
+#address {
   display: flex;
   justify-content: left;
   flex-direction: column;
   margin-bottom: 10px;
 }
 
-h3 {
+h2 {
   text-align: center;
+}
+
+h3 {
+  text-align: left;
+}
+
+.orders-list {
+  display: flex;
+  flex-flow: column wrap;
+  margin: 10px;
 }
