@@ -3,7 +3,7 @@ import { pizzaDataFiller } from "./pizzaDataFiller";
 
 const RadioButton = (props) => {
   let radioArray = pizzaDataFiller(props);
-  const isSize = props.type === "size";
+  const isSize = props.name === "size";
   let radioButtons = "";
 
   radioButtons = radioArray.map((item) => (

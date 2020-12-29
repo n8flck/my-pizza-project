@@ -3,12 +3,9 @@ import * as pizzaData from "./shared/pizzaData";
 export const pizzaDataFiller = (props) => {
   let ingredientsArray = [];
 
-  const isSize = props.type === "size";
-  const isDough = props.type === "dough";
-  const isSauce = props.type === "sauce";
-  const isCheese = props.type === "cheese";
-  const isVegs = props.type === "vegetables";
-  const isMeat = props.type === "meat";
+  const isSize = props.name === "size";
+  const isDough = props.name === "dough";
+  const isSauce = props.name === "sauce";
 
   if (isSize) {
     ingredientsArray.push(...pizzaData.SIZES);
@@ -18,15 +15,6 @@ export const pizzaDataFiller = (props) => {
   }
   if (isSauce) {
     ingredientsArray.push(...pizzaData.SAUCES);
-  }
-  if (isCheese) {
-    ingredientsArray.push(...pizzaData.CHEESE);
-  }
-  if (isVegs) {
-    ingredientsArray.push(...pizzaData.VEGETABLES);
-  }
-  if (isMeat) {
-    ingredientsArray.push(...pizzaData.MEAT);
   }
   return ingredientsArray;
 };
