@@ -23,6 +23,7 @@ export const PizzaOrderForm = ({
   const values = watch();
 
   const price = calculatePizzaPrice(
+    values.size,
     [...values.cheese, ...values.meat, ...values.vegetables],
     [...cheese, ...meat, ...vegetables],
   );
@@ -39,16 +40,29 @@ export const PizzaOrderForm = ({
           text={"Choose size"}
           register={register}
           name={"size"}
+          base_ingredients = {[
+            { id: 0, name: "30", slug: "30", price: 0 },
+            { id: 1, name: "35", slug: "35", price: 50 },
+            ]}
         />
         <RadioButton
           register={register}
           name={"dough"}
           text={"Which Dough would you like?"}
+          base_ingredients = {[
+            { id: 0, name: "Thick", slug: "Thick", price: 0 },
+            { id: 1, name: "Thin", slug: "Thin", price: 0 },
+          ]}
         />
         <RadioButton
           register={register}
           name={"sauce"}
           text={"Would you like some Sauce?"}
+          base_ingredients = {[
+            { id: 0, name: "Tomato", slug: "Tomato", price: 0 },
+            { id: 1, name: "White", slug: "White", price: 0 },
+            { id: 2, name: "Spicy", slug: "Spicy", price: 0 },
+          ]}
         />
         <Checkbox
           register={register}

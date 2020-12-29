@@ -1,5 +1,4 @@
 import React from "react";
-import { pizzaDataFiller } from "./pizzaDataFiller";
 
 const Checkbox = ({register, name, text, ingredients}) => {
   // let checkboxArray = pizzaDataFiller(props);

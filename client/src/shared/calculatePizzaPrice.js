@@ -1,6 +1,8 @@
+const isLargePizza = (size) => size === "35";
 
-export const calculatePizzaPrice = (selectedToppings, toppings) => {
-  let basePrice = 200;
+export const calculatePizzaPrice = (size, selectedToppings, toppings) => {
+  const basePrice = 200;
+  const largePizzaPrice = 50;
 
   const toppingsPrice = toppings.reduce(
     (price, topping) =>
@@ -8,5 +10,7 @@ export const calculatePizzaPrice = (selectedToppings, toppings) => {
     0
   );
 
-  return basePrice + toppingsPrice;
+  return isLargePizza(size)
+    ? (basePrice + toppingsPrice + largePizzaPrice)
+    : (basePrice + toppingsPrice);
 };
