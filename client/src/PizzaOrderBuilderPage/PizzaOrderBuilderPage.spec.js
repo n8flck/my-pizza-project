@@ -1,8 +1,8 @@
-import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import { createMemoryHistory } from "history";
+import React from "react";
 import { MemoryRouter, Router } from "react-router-dom";
 import { PizzaOrderBuilderPage } from "./PizzaOrderBuilderPage";
-import { createMemoryHistory } from "history";
 
 jest.mock("./PizzaOrderForm", () => ({
   PizzaOrderForm: ({ onPizzaOrderCreated }) => (
@@ -62,18 +62,18 @@ describe("PizzaOrderBuilderPage", () => {
       });
     });
     it("navigates to `/order-preview`", () => {
-        const history = createMemoryHistory();
-        const { getByText } = render(
-            <Router history={history}>
-              <PizzaOrderBuilderPage
-                usePizzaHook={() => ({
-                  setPizzaOrder: () => {},
-                })}
-              />
-            </Router>
-          );
-          fireEvent.click(getByText("Save"));
-          expect(history.location.pathname).toEqual("/order-preview")
+      const history = createMemoryHistory();
+      const { getByText } = render(
+        <Router history={history}>
+          <PizzaOrderBuilderPage
+            usePizzaHook={() => ({
+              setPizzaOrder: () => {},
+            })}
+          />
+        </Router>
+      );
+      fireEvent.click(getByText("Save"));
+      expect(history.location.pathname).toEqual("/order-preview");
     });
   });
 });

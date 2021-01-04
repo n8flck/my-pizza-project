@@ -1,10 +1,9 @@
 import React from "react";
 
-const Checkbox = ({register, name, text, ingredients}) => {
-  // let checkboxArray = pizzaDataFiller(props);
+const Checkbox = ({ register, name, text, ingredients }) => {
   let checkboxes = "";
-
-  checkboxes = ingredients.map((item) => (
+  const ingrs = ingredients ?? [];
+  checkboxes = ingrs.map((item) => (
     <label key={item.id}>
       {" "}
       <input

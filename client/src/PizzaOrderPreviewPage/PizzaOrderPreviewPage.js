@@ -1,9 +1,10 @@
 import { Redirect } from "react-router-dom";
-import { usePizza } from "../PizzaContext";
 import PizzaOrderConfirmationPopup from "./PizzaOrderConfirmationPopup";
+import { useSelector } from 'react-redux';
+import { getPizzaOrder } from "../state/pizza/selectors";
 
 export const PizzaOrderPreviewPage = () => {
-  const { pizzaOrder } = usePizza();
+  const pizzaOrder = useSelector(getPizzaOrder);
 
   if (pizzaOrder) {
     return (

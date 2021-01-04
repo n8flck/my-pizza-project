@@ -1,39 +1,56 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { getPizzaOrder } from "../state/pizza/selectors";
 
 export const PizzaOrderInvoicePage = () => {
+  const pizzaOrder = useSelector(getPizzaOrder);
+  const date = new Date();
+  var options = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  };
+
+  console.log(pizzaOrder);
+
   return (
     <>
       <table>
         <tbody>
-        <tr className="paymet-method">
-          <td>Payment Method:</td>
+          <tr className="paymet-method">
+            <td>Your Pizza Order:</td>
 
-          <td>Credit Card</td>
-        </tr>
+            <td>
+              {pizzaOrder.size} cm, {pizzaOrder.dough ?? ""},{" "}
+              {pizzaOrder.sauce ?? ""}, {pizzaOrder.cheese ?? ""},{" "}
+              {pizzaOrder.meat ?? ""}, {pizzaOrder.vegetables ?? ""}
+            </td>
+          </tr>
+          <tr className="paymet-method">
+            <td>Payment Method:</td>
 
-        <tr className="date">
-          <td>Date:</td>
+            <td>Credit Card</td>
+          </tr>
 
-          <td>24-NOV-2020</td>
-        </tr>
+          <tr className="date">
+            <td>Date:</td>
 
-        <tr className="date">
-          <td>Time:</td>
+            <td>{date.toLocaleString("en-US", options)}</td>
+          </tr>
 
-          <td>22:15</td>
-        </tr>
+          <tr className="item">
+            <td>Item</td>
 
-        <tr className="item">
-          <td>Item</td>
+            <td>Pizza</td>
+          </tr>
 
-          <td>Pizza</td>
-        </tr>
+          <tr className="total">
+            <td>Total:</td>
 
-        <tr className="total">
-          <td>Total:</td>
-
-          <td>$385.00</td>
-        </tr>
+            <td>{pizzaOrder.price}</td>
+          </tr>
         </tbody>
       </table>
       <hr />

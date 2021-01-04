@@ -1,8 +1,8 @@
-import React from "react";
 import { fireEvent, render } from "@testing-library/react";
+import React from "react";
+import { act } from "react-dom/test-utils";
 import { MemoryRouter } from "react-router-dom";
 import { LoginPage } from "./LoginPage";
-import { act } from "react-dom/test-utils";
 
 describe("LoginPage", () => {
   it("renders correctly", () => {
@@ -74,7 +74,7 @@ describe("LoginPage", () => {
         fireEvent.click(getByText("Login"));
       });
 
-      expect(getByText("Password is required")).toBeInTheDocument();;
+      expect(getByText("Password is required")).toBeInTheDocument();
     });
   });
 });

@@ -8,6 +8,7 @@ import { RegistrationPage } from "./RegistrationPage";
 import { LoginPage } from "./LoginPage";
 import { PizzaOrderInvoicePage } from "./PizzaOrderInvoicePage";
 import { PizzaOrdersDetailsPage } from "./PizzaOrdersDetailsPage";
+import { PrivateRoute } from "./PrivateRoute";
 
 function App() {
   return (
@@ -22,9 +23,6 @@ function App() {
           </li>
           <li>
             <Link to="/order-builder">Pizza Order Form</Link>
-          </li>
-          <li>
-            <Link to="/order-preview">Pizza Order Preview</Link>
           </li>
           <li>
             <Link to="/order-checkout">Order Checkout</Link>
@@ -45,21 +43,21 @@ function App() {
         <Route path="/login">
           <LoginPage />
         </Route>
-        <Route path="/order-builder">
+        <PrivateRoute path="/order-builder" redirectPath="/login">
           <PizzaOrderBuilderPage />
-        </Route>
-        <Route path="/order-preview">
+        </PrivateRoute>
+        <PrivateRoute path="/order-preview" redirectPath="/login">
           <PizzaOrderPreviewPage />
-        </Route>
-        <Route path="/order-checkout">
+        </PrivateRoute>
+        <PrivateRoute path="/order-checkout" redirectPath="/login">
           <PizzaOrderCheckoutPage />
-        </Route>
-        <Route path="/order-invoice">
+        </PrivateRoute>
+        <PrivateRoute path="/order-invoice" redirectPath="/login">
           <PizzaOrderInvoicePage />
-        </Route>
-        <Route path="/orders-details">
+        </PrivateRoute>
+        <PrivateRoute path="/orders-details" redirectPath="/login">
           <PizzaOrdersDetailsPage />
-        </Route>
+        </PrivateRoute>
         <Route>
           <NotFoundPage />
         </Route>

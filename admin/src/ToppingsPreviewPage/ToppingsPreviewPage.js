@@ -13,6 +13,7 @@ export const ToppingsPreviewPage = () => {
     const loadToppings = async () => {
       try {
         const json = await getToppings();
+        console.log(json);
         setData(json);
         setIsLoading(false);
       } catch (error) {
