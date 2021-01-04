@@ -1,17 +1,17 @@
 export const authenticationSuccess = (payload) => ({
-  type: "auth/authenticated",
+  type: "auth/success",
   payload,
 });
 
-export const notAuthenticated = () => ({
+export const unauthenticated = () => ({
   //better naming?
   type: "auth/unauthenticated",
 });
 
 export const authenticationError = () => ({
-  type: "auth/authentication_error",
+  type: "auth/error",
 });
 
 export const authenticationRemove = () => ({
-  type: "auth/authentication_remove",
+  type: "auth/remove",
 });

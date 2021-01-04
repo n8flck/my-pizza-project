@@ -41,11 +41,8 @@ export const ToppingEditPage = () => {
     formData.append("category", data.category);
     formData.append("image", new Blob([data.image[0]], { type: "image/png" }));
     const result = await editTopping(location.state.detail, formData);
-    console.log(result);
     history.push("/toppings-preview");
   });
-
-  console.log(toppingData);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>

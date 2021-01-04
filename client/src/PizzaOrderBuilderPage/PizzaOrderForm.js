@@ -32,8 +32,6 @@ export const PizzaOrderForm = ({
     [...(cheese ?? []), ...(meat ?? []), ...(vegetables ?? [])]
   );
 
-  console.log(price);
-
   const onSubmit = (data) => {
     const newData = Object.assign(data, { price: price });
     onPizzaOrderCreated(newData);

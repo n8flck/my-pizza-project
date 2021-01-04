@@ -50,3 +50,9 @@ Login, Registration, Checkout forms were added. Tests:
 
 Communication with server has been added. Order is sent to server now.
 Orders received from server are displayed on PizzaOrdersDetailsPage.
+
+# Stage 6
+
+Global, authentification and ingredients state is controlled with Redux now.
+Ingredients are received from Server.
+Tests for reducers, selectors and thunk were added.

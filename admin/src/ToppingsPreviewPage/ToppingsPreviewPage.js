@@ -13,7 +13,6 @@ export const ToppingsPreviewPage = () => {
     const loadToppings = async () => {
       try {
         const json = await getToppings();
-        console.log(json);
         setData(json);
         setIsLoading(false);
       } catch (error) {
@@ -41,7 +40,6 @@ export const ToppingsPreviewPage = () => {
 
   const handleDelete = async (id) => {
     const result = await deleteTopping(id);
-    console.log(result);
     setData(data.filter((item) => item.id !== id));
   };
 

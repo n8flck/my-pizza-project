@@ -17,7 +17,6 @@ export const CreateToppingsPage = () => {
     formData.append("image", new Blob([data.image[0]], { type: "image/png" }));
 
     const result = await createNewTopping(formData);
-    console.log(result);
     history.push("/toppings-preview");
   });
 

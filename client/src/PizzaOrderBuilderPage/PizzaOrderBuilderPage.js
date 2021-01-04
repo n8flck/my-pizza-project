@@ -19,8 +19,6 @@ export const PizzaOrderBuilderPage = () => {
   const meat = useSelector(getIngredientsByCategory("meat"));
   const vegetables = useSelector(getIngredientsByCategory("vegetables"));
 
-  console.log(state);
-
   const onPizzaOrderChange = (pizzaOrder) => {
     dispatch(setPizzaOrder(pizzaOrder));
     history.push("/order-preview");

@@ -13,8 +13,6 @@ export const PizzaOrderInvoicePage = () => {
     minute: "numeric",
   };
 
-  console.log(pizzaOrder);
-
   return (
     <>
       <table>

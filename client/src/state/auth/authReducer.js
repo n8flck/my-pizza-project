@@ -2,7 +2,7 @@ const initialState = false;
 
 export const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "auth/authenticated": {
+    case "auth/success": {
       return {
         ...state,
         state: !state,
@@ -12,10 +12,10 @@ export const authReducer = (state = initialState, action) => {
     case "auth/unauthenticated": {
       return state;
     }
-    case "auth/authentication_error": {
+    case "auth/error": {
       return state;
     }
-    case "auth/authentication_remove": {
+    case "auth/remove": {
       return state;
     }
     default:
