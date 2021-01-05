@@ -19,7 +19,7 @@ export const getOrders = async () => {
 };
 
 export const getToppings = async () => {
-  return await fetch("http://localhost:3000/ingredient").then((response) => {
+  return await fetch("http://localhost:3000/ingredients").then((response) => {
     if (response.ok) {
       return response.json();
     } else {
