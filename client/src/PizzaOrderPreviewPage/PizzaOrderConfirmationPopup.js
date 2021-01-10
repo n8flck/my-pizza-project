@@ -1,10 +1,8 @@
 import React from "react";
 import { Link, useHistory } from "react-router-dom";
 import "../styles.css";
-import { useDispatch, useSelector } from 'react-redux';
 
 const PizzaOrderConfirmationPopup = ({ pizzaOrder }) => {
-  const state = useSelector(state => state)
   const cheese = pizzaOrder.cheese.map((item, index) => (
     <li key={index} value={item}>
       {item}

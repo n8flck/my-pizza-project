@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { authenticationSuccess } from "../state/auth/actions";
+import { authSlice } from "../state/auth/authSlice";
+import { store } from "../store";
 import "../styles.css";
 
 export const RegistrationPage = () => {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [state, setState] = useState({});
+  const [, setState] = useState({});
 
   useEffect(() => {
     return () => {
@@ -18,7 +17,7 @@ export const RegistrationPage = () => {
   }, []);
 
   const onSubmit = (registerDetails) => {
-    dispatch(authenticationSuccess(registerDetails));
+    store.dispatch(authSlice.actions.success(registerDetails));
     history.push("/order-builder");
   };
 

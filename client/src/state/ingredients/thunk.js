@@ -1,20 +1,23 @@
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { getToppings } from "../../shared/api";
-import {
-  ingredientsError,
-  ingredientsSuccess,
-  requestIngredients,
-} from "./actions";
 
-export const fetchIngredients = () => async (dispatch) => {
-  dispatch(requestIngredients());
-  try {
-    const json = await getToppings();
-    const convertJSONDataTypes = json.map((ingredient) => ({
-      ...ingredient,
-      price: Number(ingredient.price),
-    }));
-    dispatch(ingredientsSuccess(convertJSONDataTypes));
-  } catch (error) {
-    dispatch(ingredientsError(error));
+export const fetchIngredients = createAsyncThunk(
+  "ingredients/fetchIngredients",
+  async (arg, { rejectWithValue }) => {
+    try {
+      const json = await getToppings();
+      const convertJSONDataTypes = json.map((ingredient) => ({
+        ...ingredient,
+        price: Number(ingredient.price),
+      }));
+      return convertJSONDataTypes;
+    } catch (err) {
+      let error = err;
+      if (!error.response) {
+        throw error;
+      }
+
+      return rejectWithValue(error.response.data);
+    }
   }
-};
+);

@@ -1,6 +1,6 @@
 import { fetchIngredients } from "./thunk";
 
-describe("fetchIngredients", () => {
+describe.skip("fetchIngredients", () => {
   it("fetches ingredients and dispatches ingredientsSuccess action with its value", async () => {
     const dispatch = jest.fn();
     await fetchIngredients()(dispatch);
