@@ -4,13 +4,17 @@ import { getPizzaOrder } from "../state/pizza/selectors";
 
 export const PizzaOrderInvoicePage = () => {
   const pizzaOrder = useSelector(getPizzaOrder);
-  const date = new Date();
-  var options = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-    hour: "numeric",
-    minute: "numeric",
+
+  const getCurrentDate = () => {
+    const date = new Date();
+    const dateFormat = {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    };
+    return date.toLocaleString("en-US", dateFormat);
   };
 
   return (
@@ -35,7 +39,7 @@ export const PizzaOrderInvoicePage = () => {
           <tr className="date">
             <td>Date:</td>
 
-            <td>{date.toLocaleString("en-US", options)}</td>
+            <td>{getCurrentDate()}</td>
           </tr>
 
           <tr className="item">

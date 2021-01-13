@@ -26,15 +26,15 @@ export const LoginPage = () => {
       <hr />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="uname">
+          <label htmlFor="username">
             <b>Username</b>
           </label>
           <input
-            id="uname"
+            id="username"
             className="login-form"
             type="text"
             placeholder="Enter Username"
-            name="uname"
+            name="username"
             ref={register({
               required: {
                 value: true,
@@ -42,18 +42,18 @@ export const LoginPage = () => {
               },
             })}
           />
-          {errors.uname && <p>{errors.uname.message}</p>}
+          {errors.username && <p>{errors.username.message}</p>}
         </div>
         <div>
-          <label htmlFor="psw">
+          <label htmlFor="password">
             <b>Password</b>
           </label>
           <input
-            id="psw"
+            id="password"
             className="login-form"
             type="password"
             placeholder="Enter Password"
-            name="psw"
+            name="password"
             ref={register({
               required: {
                 value: true,
@@ -61,7 +61,7 @@ export const LoginPage = () => {
               },
             })}
           />
-          {errors.psw && <p>{errors.psw.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </div>
         <button type="submit">Login</button>
       </form>

@@ -1,21 +1,13 @@
 import { fireEvent, render } from "@testing-library/react";
+import { createMemoryHistory } from "history";
 import React from "react";
 import { Provider } from 'react-redux';
+import { Router } from "react-router-dom";
 import { createStore } from "redux";
 import * as ingredientsActions from "../state/ingredients/actions";
 import { ingredientsSlice } from "../state/ingredients/ingredientsSlice";
 import * as pizzaActions from "../state/pizza/actions";
 import { PizzaOrderBuilderPage } from "./PizzaOrderBuilderPage";
-import { createMemoryHistory } from "history";
-import { MemoryRouter, Router } from "react-router-dom";
-// import { render, fireEvent, screen } from "./test-utils";
-
-// const store = createStore(
-//   ingredientsSlice,
-//   { pending: true, error: null, data: null },
-//   pizzaOrderSlice,
-//   { state: {} }
-// );
 
 jest.mock("./PizzaOrderForm", () => ({
   PizzaOrderForm: ({ onPizzaOrderCreated }) => (
@@ -37,8 +29,8 @@ jest.mock("./PizzaOrderForm", () => ({
   ),
 }));
 
-describe.skip("PizzaOrderBuilderPage", () => {
-  it("renders correctly", () => {
+describe("PizzaOrderBuilderPage", () => {
+  it.skip("renders correctly", () => {
     const getIsLoading = jest.fn();
     getIsLoading.mockReturnValue(false);
     const store = createStore(ingredientsSlice, { pending: true, error: null, data: null });
@@ -53,7 +45,6 @@ describe.skip("PizzaOrderBuilderPage", () => {
       }];
       const action = ingredientsActions.ingredientsSuccess(ingredients);
       store.dispatch(action);
-      const actual = store.getState();
     const { getByText } = render(
       <Provider store={store}>
         <PizzaOrderBuilderPage />
@@ -63,7 +54,7 @@ describe.skip("PizzaOrderBuilderPage", () => {
   });
 
   describe(".onPizzaOrderChange", () => {
-    it("sets pizza value in the context", () => {
+    it.skip("sets pizza value in the context", () => {
       const getIsLoading = jest.fn((state) => state.ingredients.pending);
       getIsLoading.mockReturnValue(false);
       const mockSetPizzaOrder = jest.fn();

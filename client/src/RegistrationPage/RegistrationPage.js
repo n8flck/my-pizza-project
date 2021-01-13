@@ -10,11 +10,11 @@ export const RegistrationPage = () => {
   const history = useHistory();
   const [, setState] = useState({});
 
-  useEffect(() => {
-    return () => {
-      setState({});
-    };
-  }, []);
+  // useEffect(() => {
+  //   return () => {
+  //     setState({});
+  //   };
+  // }, []);
 
   const onSubmit = (registerDetails) => {
     store.dispatch(authSlice.actions.success(registerDetails));
@@ -45,14 +45,14 @@ export const RegistrationPage = () => {
           {errors.email && <p>{errors.email.message}</p>}
         </div>
         <div>
-          <label htmlFor="psw">
+          <label htmlFor="password">
             <b>Password</b>
           </label>
           <input
-            id="psw"
+            id="password"
             type="password"
             placeholder="Enter Password"
-            name="psw"
+            name="password"
             ref={register({
               required: {
                 value: true,
@@ -60,17 +60,17 @@ export const RegistrationPage = () => {
               },
             })}
           />
-          {errors.psw && <p>{errors.psw.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </div>
         <div>
-          <label htmlFor="pswRepeat">
+          <label htmlFor="repeatPassword">
             <b>Repeat Password</b>
           </label>
           <input
-            id="pswRepeat"
+            id="repeatPassword"
             type="password"
             placeholder="Repeat Password"
-            name="pswRepeat"
+            name="repeatPassword"
             ref={register({
               required: {
                 value: true,
@@ -78,7 +78,7 @@ export const RegistrationPage = () => {
               },
             })}
           />
-          {errors.pswRepeat && <p>{errors.pswRepeat.message}</p>}
+          {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
         </div>
         <button type="submit" className="registerbtn">
           Register

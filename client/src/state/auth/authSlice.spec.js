@@ -6,11 +6,11 @@ describe.skip("authReducer", () => {
       const initialState = false;
       const action = {
         type: "auth/success",
-        payload: { uname: "eee", psw: "rrr" },
+        payload: { username: "eee", password: "rrr" },
       };
       expect(authReducer(initialState, action)).toEqual({
         state: true,
-        data: { uname: "eee", psw: "rrr" },
+        data: { username: "test name", password: "test password" },
       });
     });
   });

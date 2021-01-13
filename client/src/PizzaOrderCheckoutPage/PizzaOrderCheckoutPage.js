@@ -41,8 +41,8 @@ export const PizzaOrderCheckoutPage = () => {
     const formData = new FormData();
     formData.append("ingredients", Object.values(pizzaOrder));
     formData.append("address", data.address);
-    formData.append("name", data.cardholder);
-    formData.append("card_number", data.cardnumber);
+    formData.append("name", data.cardHolder);
+    formData.append("card_number", data.cardNumber);
 
     const result = await createNewOrder(formData);
     history.push("/order-invoice");
@@ -54,25 +54,25 @@ export const PizzaOrderCheckoutPage = () => {
       <hr />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="cname">Name on Card</label>
+          <label htmlFor="cardHolderName">Name on Card</label>
           <input
-            id="cname"
+            id="cardHolderName"
             className="checkout-form"
             type="text"
-            name="cardholder"
+            name="cardHolder"
             placeholder="John More Doe"
             ref={register({ required: true })}
           />
         </div>
         <div>
-          <label htmlFor="ccnum">Credit card number:</label>
+          <label htmlFor="cardNumber">Credit card number:</label>
           <input
-            id="ccnum"
+            id="cardNumber"
             className="checkout-form"
             type="tel"
             inputMode="numeric"
             autoComplete="cc-number"
-            name="cardnumber"
+            name="cardNumber"
             placeholder="0000 0000 0000 0000"
             onChange={(event) => {
               const { value } = event.target;
@@ -83,23 +83,23 @@ export const PizzaOrderCheckoutPage = () => {
           />
         </div>
         <div>
-          <label htmlFor="expmonth">Exp Month</label>
+          <label htmlFor="expiryMonth">Exp Month</label>
           <input
-            id="expmonth"
+            id="expiryMonth"
             className="checkout-form"
             type="text"
-            name="expmonth"
+            name="expiryMonth"
             placeholder="September"
             ref={register({ required: true })}
           />
         </div>
         <div>
-          <label htmlFor="expyear">Exp Year</label>
+          <label htmlFor="expiryYear">Exp Year</label>
           <input
-            id="expyear"
+            id="expiryYear"
             className="checkout-form"
             type="text"
-            name="expyear"
+            name="expiryYear"
             placeholder="2018"
             ref={register({ required: true })}
           />
