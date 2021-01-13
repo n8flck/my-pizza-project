@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { usePizza } from "../PizzaContext";
-import { useHistory } from "react-router-dom";
-import { createNewOrder } from "../shared/api";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { createNewOrder } from "../shared/api";
+import { getPizzaOrder } from "../state/pizza/selectors";
 
 const normalizeCardNumber = (value) => {
   return (
@@ -31,12 +31,11 @@ const detectCardType = (number) => {
   }
 };
 
-
-export const PizzaOrderCheckoutPage = ({ usePizzaHook = usePizza }) => {
+export const PizzaOrderCheckoutPage = () => {
   const { register, handleSubmit } = useForm();
   const [cardType, setCardType] = useState();
   const history = useHistory();
-  const { pizzaOrder } = usePizzaHook();
+  const pizzaOrder = useSelector(getPizzaOrder);
 
   const onSubmit = handleSubmit(async (data) => {
     const formData = new FormData();

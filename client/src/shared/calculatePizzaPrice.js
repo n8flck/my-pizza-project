@@ -1,36 +1,16 @@
-import { pizzaDataFiller } from "../pizzaDataFiller";
+const isLargePizza = (size) => size === "35";
 
-export const calculatePizzaPrice = ({ size, cheese, vegetables, meat }) => {
+export const calculatePizzaPrice = (size, selectedToppings, toppings) => {
+  const basePrice = 200;
+  const largePizzaPrice = 50;
 
-  let basePrice = 200;
-  let ingredientPrice = 0;
+  const toppingsPrice = toppings.reduce(
+    (price, topping) =>
+      selectedToppings.includes(topping.slug) ? price + topping.price : price,
+    0
+  );
 
-  let calculateIngredients = new Map();
-
-  calculateIngredients.set("size", size);
-  calculateIngredients.set("cheese", cheese);
-  calculateIngredients.set("vegetables", vegetables);
-  calculateIngredients.set("meat", meat);
-
-  for (let [key, value] of calculateIngredients) {
-   let pizzaIngredients = pizzaDataFiller({
-      name: "",
-      type: key,
-      text: "",
-      onChange: null,
-    });
-    if (value.length > 0) {
-      if (key === "size") {
-        ingredientPrice += pizzaIngredients.find((o) => o.name === value).price;
-      } else {
-        ingredientPrice += value.reduce(
-          (price, val) =>
-            price + pizzaIngredients.find((o) => o.name === val).price,
-          0
-        );
-      }
-    }
-  }
-
-  return basePrice + ingredientPrice;
+  return isLargePizza(size)
+    ? (basePrice + toppingsPrice + largePizzaPrice)
+    : (basePrice + toppingsPrice);
 };

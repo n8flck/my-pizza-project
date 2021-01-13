@@ -1,27 +1,25 @@
 import React from "react";
-import { pizzaDataFiller } from "./pizzaDataFiller";
 
-const Checkbox = (props) => {
-  let checkboxArray = pizzaDataFiller(props);
+const Checkbox = ({ register, name, text, ingredients }) => {
   let checkboxes = "";
-
-  checkboxes = checkboxArray.map((item) => (
-      <label key={item.id}>
-        {" "}
-        <input
-          id={item.id}
-          type="checkbox"
-          name={props.name}
-          ref={props.register}
-          value={item.name}
-        />{" "}
-        {item.name}{" "}
-      </label>
+  const ingrs = ingredients ?? [];
+  checkboxes = ingrs.map((item) => (
+    <label key={item.id}>
+      {" "}
+      <input
+        id={item.id}
+        type="checkbox"
+        name={name}
+        ref={register}
+        value={item.slug}
+      />{" "}
+      {item.name}{" "}
+    </label>
   ));
 
   return (
     <fieldset>
-      <legend>{props.text}</legend>
+      <legend>{text}</legend>
       <p>{checkboxes}</p>
     </fieldset>
   );

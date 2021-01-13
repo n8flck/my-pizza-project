@@ -40,7 +40,6 @@ export const ToppingsPreviewPage = () => {
 
   const handleDelete = async (id) => {
     const result = await deleteTopping(id);
-    console.log(result);
     setData(data.filter((item) => item.id !== id));
   };
 

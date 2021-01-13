@@ -1,13 +1,25 @@
-import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { Link, useHistory } from "react-router-dom";
+import { authenticationSuccess } from "../state/auth/actions";
 import "../styles.css";
 
-export const RegistrationPage = ({ registrSubmit }) => {
+export const RegistrationPage = () => {
   const { register, handleSubmit, errors } = useForm();
+  const history = useHistory();
+  const dispatch = useDispatch();
+  const [state, setState] = useState({});
 
-  const onSubmit = (data) => {
-    registrSubmit(data);
-    // alert(JSON.stringify(data));
+  useEffect(() => {
+    return () => {
+      setState({});
+    };
+  }, []);
+
+  const onSubmit = (registerDetails) => {
+    dispatch(authenticationSuccess(registerDetails));
+    history.push("/order-builder");
   };
 
   return (
