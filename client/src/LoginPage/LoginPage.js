@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useHistory } from "react-router-dom";
 import { authSlice } from "../state/auth/authSlice";
@@ -22,7 +22,7 @@ export const LoginPage = () => {
 
   return (
     <>
-      <h1>L0gin Page</h1>
+      <h1>Login Page</h1>
       <hr />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>

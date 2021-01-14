@@ -10,11 +10,11 @@ export const RegistrationPage = () => {
   const history = useHistory();
   const [, setState] = useState({});
 
-  // useEffect(() => {
-  //   return () => {
-  //     setState({});
-  //   };
-  // }, []);
+  useEffect(() => {
+    return () => {
+      setState({});
+    };
+  }, []);
 
   const onSubmit = (registerDetails) => {
     store.dispatch(authSlice.actions.success(registerDetails));
