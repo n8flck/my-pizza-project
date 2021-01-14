@@ -5,7 +5,7 @@ describe("getAuthenticationStatus", () => {
     const state = {
       ingredients: {},
       pizzaOrder: {},
-      auth: { data: { uname: "TEST_NAME", psw: "TEST_PSW" }, state: true },
+      auth: { data: { username: "test name", password: "test password" }, state: true },
     };
     expect(getAuthenticationStatus(state)).toBe(true);
   });

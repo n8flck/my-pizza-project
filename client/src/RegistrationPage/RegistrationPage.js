@@ -1,15 +1,14 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { authenticationSuccess } from "../state/auth/actions";
+import { authSlice } from "../state/auth/authSlice";
+import { store } from "../store";
 import "../styles.css";
 
 export const RegistrationPage = () => {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [state, setState] = useState({});
+  const [, setState] = useState({});
 
   useEffect(() => {
     return () => {
@@ -18,7 +17,7 @@ export const RegistrationPage = () => {
   }, []);
 
   const onSubmit = (registerDetails) => {
-    dispatch(authenticationSuccess(registerDetails));
+    store.dispatch(authSlice.actions.success(registerDetails));
     history.push("/order-builder");
   };
 
@@ -46,14 +45,14 @@ export const RegistrationPage = () => {
           {errors.email && <p>{errors.email.message}</p>}
         </div>
         <div>
-          <label htmlFor="psw">
+          <label htmlFor="password">
             <b>Password</b>
           </label>
           <input
-            id="psw"
+            id="password"
             type="password"
             placeholder="Enter Password"
-            name="psw"
+            name="password"
             ref={register({
               required: {
                 value: true,
@@ -61,17 +60,17 @@ export const RegistrationPage = () => {
               },
             })}
           />
-          {errors.psw && <p>{errors.psw.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </div>
         <div>
-          <label htmlFor="pswRepeat">
+          <label htmlFor="repeatPassword">
             <b>Repeat Password</b>
           </label>
           <input
-            id="pswRepeat"
+            id="repeatPassword"
             type="password"
             placeholder="Repeat Password"
-            name="pswRepeat"
+            name="repeatPassword"
             ref={register({
               required: {
                 value: true,
@@ -79,7 +78,7 @@ export const RegistrationPage = () => {
               },
             })}
           />
-          {errors.pswRepeat && <p>{errors.pswRepeat.message}</p>}
+          {errors.repeatPassword && <p>{errors.repeatPassword.message}</p>}
         </div>
         <button type="submit" className="registerbtn">
           Register

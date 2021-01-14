@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
-import { authenticationSuccess } from "../state/auth/actions";
+import { authSlice } from "../state/auth/authSlice";
+import { store } from "../store";
 
 export const LoginPage = () => {
   const { register, handleSubmit, errors } = useForm();
   const history = useHistory();
-  const dispatch = useDispatch();
-  const [state, setState] = useState({});
+  const [, setState] = useState({});
 
   useEffect(() => {
     return () => {
@@ -17,25 +16,25 @@ export const LoginPage = () => {
   }, []);
 
   const onSubmit = (loginCredentials) => {
-    dispatch(authenticationSuccess(loginCredentials));
+    store.dispatch(authSlice.actions.success(loginCredentials));
     history.push("/order-builder");
   };
 
   return (
     <>
-      <h1>L0gin Page</h1>
+      <h1>Login Page</h1>
       <hr />
       <form onSubmit={handleSubmit(onSubmit)}>
         <div>
-          <label htmlFor="uname">
+          <label htmlFor="username">
             <b>Username</b>
           </label>
           <input
-            id="uname"
+            id="username"
             className="login-form"
             type="text"
             placeholder="Enter Username"
-            name="uname"
+            name="username"
             ref={register({
               required: {
                 value: true,
@@ -43,18 +42,18 @@ export const LoginPage = () => {
               },
             })}
           />
-          {errors.uname && <p>{errors.uname.message}</p>}
+          {errors.username && <p>{errors.username.message}</p>}
         </div>
         <div>
-          <label htmlFor="psw">
+          <label htmlFor="password">
             <b>Password</b>
           </label>
           <input
-            id="psw"
+            id="password"
             className="login-form"
             type="password"
             placeholder="Enter Password"
-            name="psw"
+            name="password"
             ref={register({
               required: {
                 value: true,
@@ -62,7 +61,7 @@ export const LoginPage = () => {
               },
             })}
           />
-          {errors.psw && <p>{errors.psw.message}</p>}
+          {errors.password && <p>{errors.password.message}</p>}
         </div>
         <button type="submit">Login</button>
       </form>

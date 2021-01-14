@@ -1,9 +1,8 @@
 import React from "react";
 
-const Checkbox = ({ register, name, text, ingredients }) => {
+const Checkbox = ({ register, name, text, ingredients = [] }) => {
   let checkboxes = "";
-  const ingrs = ingredients ?? [];
-  checkboxes = ingrs.map((item) => (
+  checkboxes = ingredients.map((item) => (
     <label key={item.id}>
       {" "}
       <input

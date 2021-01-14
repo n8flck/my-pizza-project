@@ -1,23 +1,20 @@
-import { createStore, combineReducers } from "redux";
-import { ingredientsReducer } from "./state/ingredients/ingredientsReducer";
-import { pizzaOrderReducer } from "./state/pizza/pizzaOrderReducer";
-import { authReducer } from "./state/auth/authReducer";
-import { compose, applyMiddleware } from "redux";
+import { configureStore } from "@reduxjs/toolkit";
+import { applyMiddleware } from "redux";
+import logger from "redux-logger";
 import thunk from "redux-thunk";
+import { authSlice } from "./state/auth/authSlice";
+import { ingredientsSlice } from "./state/ingredients/ingredientsSlice";
+import { pizzaOrderSlice } from "./state/pizza/pizzaOrderSlice";
 
-const composeEnhancers =
-  typeof window === "object" && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
-    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__({
-      })
-    : compose;
+const reducer = {
+  ingredients: ingredientsSlice.reducer,
+  pizzaOrder: pizzaOrderSlice.reducer,
+  auth: authSlice.reducer,
+};
 
-const enhancer = composeEnhancers(applyMiddleware(thunk));
-
-export const store = createStore(
-  combineReducers({
-    ingredients: ingredientsReducer,
-    pizzaOrder: pizzaOrderReducer,
-    auth: authReducer,
-  }),
-  enhancer
-);
+export const store = configureStore({
+  reducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+  devTools: process.env.NODE_ENV !== "production",
+  enhancers: [applyMiddleware(thunk)],
+});

@@ -56,3 +56,7 @@ Orders received from server are displayed on PizzaOrdersDetailsPage.
 Global, authentification and ingredients state is controlled with Redux now.
 Ingredients are received from Server.
 Tests for reducers, selectors and thunk were added.
+
+# Stage 7
+
+Handling state with Redux-Toolkit: actions removed, Slicers istead of "old-way" Reducer, re-writed store.js and thunk

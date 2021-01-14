@@ -1,9 +1,9 @@
 import React from "react";
 
-const RadioButton = ({ text, register, name, base_ingredients }) => {
+const RadioButton = ({ text, register, name, baseIngredients }) => {
   const isSize = name === "size";
   let radioButtons = "";
-  radioButtons = base_ingredients.map((item) => (
+  radioButtons = baseIngredients.map((item) => (
     <label key={item.id}>
       {" "}
       <input

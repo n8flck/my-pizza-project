@@ -1,31 +1,30 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import {
   getIngredientsByCategory,
-  getIsLoading
+  getIsLoading,
 } from "../state/ingredients/selectors";
 import { fetchIngredients } from "../state/ingredients/thunk";
-import { setPizzaOrder } from "../state/pizza/actions";
+import { pizzaOrderSlice } from "../state/pizza/pizzaOrderSlice";
+import { store } from "../store";
 import { PizzaOrderForm } from "./PizzaOrderForm";
 
 export const PizzaOrderBuilderPage = () => {
   const history = useHistory();
-  const dispatch = useDispatch();
   const isLoading = useSelector(getIsLoading);
 
-  const state = useSelector((state) => state);
   const cheese = useSelector(getIngredientsByCategory("cheese"));
   const meat = useSelector(getIngredientsByCategory("meat"));
   const vegetables = useSelector(getIngredientsByCategory("vegetables"));
 
   const onPizzaOrderChange = (pizzaOrder) => {
-    dispatch(setPizzaOrder(pizzaOrder));
+    store.dispatch(pizzaOrderSlice.actions.set_pizzaOrder(pizzaOrder));
     history.push("/order-preview");
   };
 
   useEffect(() => {
-    dispatch(fetchIngredients());
+    store.dispatch(fetchIngredients());
   }, []);
 
   if (isLoading) {

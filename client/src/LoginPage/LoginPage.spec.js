@@ -36,8 +36,8 @@ describe("LoginPage", () => {
       });
 
       expect(loginSubmit).toBeCalledWith({
-        uname: "Ivan",
-        psw: "Ivanov",
+        username: "Ivan",
+        password: "Ivanov",
       });
     });
   });

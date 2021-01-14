@@ -1,1 +1,1 @@
-export const getAuthenticationStatus = (state) => state.auth.state;
+export const getAuthenticationStatus = (state) => state.auth.isAuthenticated;

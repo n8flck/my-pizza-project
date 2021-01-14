@@ -23,7 +23,7 @@ export const getToppings = async () => {
     if (response.ok) {
       return response.json();
     } else {
-      throw new Error(response.statusText || "Toppings were not returned");
+      throw new Error(`Fetching Ingredients failed with response: ${response.statusText}` || "Toppings were not returned");
     }
   });
 };

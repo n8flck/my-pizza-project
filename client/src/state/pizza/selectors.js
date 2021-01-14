@@ -1,1 +1,1 @@
-export const getPizzaOrder = (state) => state.pizzaOrder;
+export const getPizzaOrder = (state) => state.pizzaOrder.data;

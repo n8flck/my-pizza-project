@@ -20,17 +20,10 @@ export const PizzaOrderForm = ({
     },
   });
 
-  const values = watch();
+  const selectedPizzaOptions = watch();
+  const allIngredients = [...cheese, ...meat, ...vegetables];
 
-  const price = calculatePizzaPrice(
-    values.size,
-    [
-      ...(values.cheese ?? []),
-      ...(values.meat ?? []),
-      ...(values.vegetables ?? []),
-    ],
-    [...(cheese ?? []), ...(meat ?? []), ...(vegetables ?? [])]
-  );
+  const price = calculatePizzaPrice(selectedPizzaOptions, allIngredients);
 
   const onSubmit = (data) => {
     const newData = Object.assign(data, { price: price });
@@ -44,7 +37,7 @@ export const PizzaOrderForm = ({
           text={"Choose size"}
           register={register}
           name={"size"}
-          base_ingredients={[
+          baseIngredients={[
             { id: 0, name: "30", slug: "30", price: 0 },
             { id: 1, name: "35", slug: "35", price: 50 },
           ]}
@@ -53,7 +46,7 @@ export const PizzaOrderForm = ({
           register={register}
           name={"dough"}
           text={"Which Dough would you like?"}
-          base_ingredients={[
+          baseIngredients={[
             { id: 0, name: "Thick", slug: "Thick", price: 0 },
             { id: 1, name: "Thin", slug: "Thin", price: 0 },
           ]}
@@ -62,7 +55,7 @@ export const PizzaOrderForm = ({
           register={register}
           name={"sauce"}
           text={"Would you like some Sauce?"}
-          base_ingredients={[
+          baseIngredients={[
             { id: 0, name: "Tomato", slug: "Tomato", price: 0 },
             { id: 1, name: "White", slug: "White", price: 0 },
             { id: 2, name: "Spicy", slug: "Spicy", price: 0 },

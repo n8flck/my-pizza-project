@@ -39,8 +39,8 @@ describe("RegistrationPage", () => {
 
       expect(registrSubmit).toBeCalledWith({
         email: "test@mail.ru",
-        psw: "12345",
-        pswRepeat: "12345",
+        password: "12345",
+        repeatPassword: "12345",
       });
     });
   });

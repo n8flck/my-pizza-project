@@ -57,10 +57,10 @@ describe("PizzaOrderCheckoutPage", () => {
         });
 
         expect(registerSubmit).toBeCalledWith({
-          cardholder: "Ivan Ivanov",
-          cardnumber: "3333 4444 5555 6666",
-          expmonth: "September",
-          expyear: "1986",
+          cardHolderName: "Ivan Ivanov",
+          cardNumber: "3333 4444 5555 6666",
+          expiryMonth: "September",
+          expiryYear: "1986",
           cvv: "555",
           address: "Becker str. 10",
         });
